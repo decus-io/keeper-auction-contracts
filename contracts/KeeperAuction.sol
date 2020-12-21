@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.0 <0.8.0;
 
-import "@openzeppelin/upgrades-core/contracts/Initializable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./interfaces/ERC20Interface.sol";
 import "./interfaces/IKeeperImport.sol";
 
-contract KeeperAuction is Ownable, Initializable {
+contract KeeperAuction is Initializable, OwnableUpgradeable {
     using SafeMath for uint256;
     using SafeMath for uint;
 
@@ -63,10 +63,9 @@ contract KeeperAuction is Ownable, Initializable {
     uint public MINIMUM_DELAY;
     uint public constant MAXIMUM_DELAY = 5 days;
 
-    constructor() public {
-    }
-
     function initialize(address[] memory _tokens, uint _delay, uint256 minAmount) public initializer {
+        __Ownable_init();
+
         require(_delay > 0 && _delay < MAXIMUM_DELAY, "KeeperAuction::initialize: delay illegal");
         deadline = 9999999999;
         MINIMUM_DELAY = _delay;
