@@ -1,0 +1,142 @@
+{
+  "manifestVersion": "3.1",
+  "impls": {
+    "2337de032933ddc30a26e7b06bdb9a53a0ca3e09088211d67fb4affc5bd7a7b7": {
+      "address": "0x21256B6ec7925d056733a87f602F6A148CdB60Fe",
+      "txHash": "0xe74218e03d88a76775a6b55492fc6ce582262c426f68503a499a4a62bdaedd40",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:24"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:29"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin/contracts-upgradeable/GSN/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "tokens",
+            "type": "t_mapping(t_address,t_struct(Token)1071_storage)",
+            "src": "contracts/KeeperAuction.sol:50"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "userBids",
+            "type": "t_mapping(t_address,t_struct(UserBids)1094_storage)",
+            "src": "contracts/KeeperAuction.sol:51"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "bids",
+            "type": "t_array(t_struct(Bid)1086_storage)dyn_storage",
+            "src": "contracts/KeeperAuction.sol:52"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "bidders",
+            "type": "t_array(t_address)dyn_storage",
+            "src": "contracts/KeeperAuction.sol:53"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "deadline",
+            "type": "t_uint256",
+            "src": "contracts/KeeperAuction.sol:54"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "selectedTokens",
+            "type": "t_array(t_struct(SelectedToken)1099_storage)dyn_storage",
+            "src": "contracts/KeeperAuction.sol:55"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "keeperImport",
+            "type": "t_contract(IKeeperImport)2405",
+            "src": "contracts/KeeperAuction.sol:56"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "ended",
+            "type": "t_bool",
+            "src": "contracts/KeeperAuction.sol:57"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "MIN_AMOUNT",
+            "type": "t_uint256",
+            "src": "contracts/KeeperAuction.sol:59"
+          },
+          {
+            "contract": "KeeperAuction",
+            "label": "MINIMUM_DELAY",
+            "type": "t_uint256",
+            "src": "contracts/KeeperAuction.sol:63"
+          }
+        ],
+        "types": {
+          "t_mapping(t_address,t_struct(Token)1071_storage)": {
+            "label": "mapping(address => struct KeeperAuction.Token)"
+          },
+          "t_mapping(t_address,t_struct(UserBids)1094_storage)": {
+            "label": "mapping(address => struct KeeperAuction.UserBids)"
+          },
+          "t_array(t_struct(Bid)1086_storage)dyn_storage": {
+            "label": "struct KeeperAuction.Bid[]"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_array(t_struct(SelectedToken)1099_storage)dyn_storage": {
+            "label": "struct KeeperAuction.SelectedToken[]"
+          },
+          "t_contract(IKeeperImport)2405": {
+            "label": "contract IKeeperImport"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    }
+  },
+  "admin": {
+    "address": "0x8A7db04878fB97E8E7f627FF27c65Af45B60C631",
+    "txHash": "0xab59d6569cb01de69bdb2ba35fc5e718cd87f51f25b14d6f0dfd255150b9a963"
+  }
+}
