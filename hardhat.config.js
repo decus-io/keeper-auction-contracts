@@ -1,11 +1,11 @@
 require("@nomiclabs/hardhat-truffle5");
 
 task("accounts", "Prints the list of accounts", async () => {
-  const accounts = await web3.eth.getAccounts();
+    const accounts = await web3.eth.getAccounts();
 
-  for (const account of accounts) {
-    console.log(account.address);
-  }
+    for (const account of accounts) {
+        console.log(account.address);
+    }
 });
 
 // You need to export an object to set up your config
@@ -15,9 +15,16 @@ task("accounts", "Prints the list of accounts", async () => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.7.3",
-  mocha: {
-    timeout: 2000000
-  }
+    solidity: "0.7.3",
+    networks: {
+        hardhat: {
+            accounts: {
+                count: 200,
+            }
+        },
+    },
+    mocha: {
+        timeout: 2000000
+    }
 };
 
