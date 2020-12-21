@@ -1,17 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.0 <0.8.0;
 
+import "@openzeppelin/upgrades-core/contracts/Initializable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./interfaces/ERC20Interface.sol";
 import "./interfaces/IKeeperImport.sol";
 
-contract KeeperAuction is Ownable {
+contract KeeperAuction is Ownable, Initializable {
     using SafeMath for uint256;
     using SafeMath for uint;
-
-    uint public constant DECIMALS = 8;
 
     struct Token {
         bool exist;
@@ -58,13 +57,17 @@ contract KeeperAuction is Ownable {
     bool public ended;
 
     uint256 public MIN_AMOUNT;
+    uint public constant DECIMALS = 8;
 
     // timelock
     uint public MINIMUM_DELAY;
     uint public constant MAXIMUM_DELAY = 5 days;
 
-    constructor(address[] memory _tokens, uint _delay, uint256 minAmount) public {
-        require(_delay > 0 && _delay < MAXIMUM_DELAY, "KeeperAuction::constructor: delay illegal");
+    constructor() public {
+    }
+
+    function initialize(address[] memory _tokens, uint _delay, uint256 minAmount) public initializer {
+        require(_delay > 0 && _delay < MAXIMUM_DELAY, "KeeperAuction::initialize: delay illegal");
         deadline = 9999999999;
         MINIMUM_DELAY = _delay;
         MIN_AMOUNT = minAmount;
@@ -72,7 +75,7 @@ contract KeeperAuction is Ownable {
         for (uint8 i = 0; i < _tokens.length; i++) {
             ERC20Interface token = ERC20Interface(_tokens[i]);
             uint8 decimals = token.decimals();
-            require(decimals >= DECIMALS, "KeeperAuction::constructor: token decimal need greater default decimal");
+            require(decimals >= DECIMALS, "KeeperAuction::initialize: token decimal need greater default decimal");
             tokens[_tokens[i]] = Token(true, _tokens[i], decimals, i);
             selectedTokens.push(SelectedToken(_tokens[i], 0));
         }
