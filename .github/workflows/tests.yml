@@ -24,4 +24,8 @@ jobs:
 
       - name: Run tests
         run: npx hardhat test
-
+        env:
+          INFURA_PROJECT_ID: e112d1823c2b481b8d4671f611b6a1b8
+          PRIVATE_KEY: 270e6de040b7f77639f770d37f1e09f3d63275994a97d7417e92ee759498594f
+          ETHERSCAN_API_KEY: None
+          AUCTION_ADDRESS: 0xBf5413513343578E28A1241E78acB0458EBD1454

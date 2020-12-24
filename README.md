@@ -14,6 +14,7 @@ npx hardhat test
 export INFURA_PROJECT_ID=
 export PRIVATE_KEY=
 export ETHERSCAN_API_KEY=
+export AUCTION_ADDRESS=
 npx hardhat compile --force
 npx hardhat run scripts/deploy.js --network kovan
 
