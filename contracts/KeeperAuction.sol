@@ -151,14 +151,18 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
         bool live,
         uint index,
         address token,
-        uint256 amount) {
+        uint256 amount,
+        uint256 vAmount,
+        uint256 selectedAmount) {
         Bid storage _bid = bids[_index];
         return (
             _bid.owner,
             _bid.live,
             _bid.index,
             _bid.token,
-            _bid.amount
+            _bid.amount,
+            _bid.vAmount,
+            _bid.selectedAmount
         );
     }
 

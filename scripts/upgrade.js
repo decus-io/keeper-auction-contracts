@@ -3,7 +3,11 @@ require('dotenv').config();
 
 async function main() {
   const KeeperAuction = await ethers.getContractFactory("KeeperAuction");
-  const auction = await upgrades.upgradeProxy(process.env.AUCTION_ADDRESS, KeeperAuction);
+  const auction = await upgrades.upgradeProxy(
+    process.env.AUCTION_ADDRESS,
+    KeeperAuction,
+    {unsafeAllowCustomTypes: true}
+  );
   console.log("KeeperAuction upgraded");
 }
 
