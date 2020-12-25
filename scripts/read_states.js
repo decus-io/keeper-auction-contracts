@@ -1,9 +1,10 @@
 const { ethers } = require("hardhat");
+require('dotenv').config();
 
 async function main() {
     const KeeperAuction = await ethers.getContractFactory("KeeperAuction");
 
-    const auction = KeeperAuction.attach("0xBf5413513343578E28A1241E78acB0458EBD1454");
+    const auction = KeeperAuction.attach(process.env.AUCTION_ADDRESS);
     
     console.log("KeeperAuction deadline:", (await auction.deadline()).toString());
 
