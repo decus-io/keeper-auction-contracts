@@ -91,7 +91,7 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
         if (decimals > DECIMALS) {
             vAmount = _amount.div(10**(decimals - DECIMALS));
         }
-        require(vAmount >= MIN_AMOUNT, "KeeperAuction::bid: too small amount");
+        require(vAmount.mod(MIN_AMOUNT) == 0 && _amount.mod(MIN_AMOUNT) == 0, "KeeperAuction::bid: amount illegal");
 
         ERC20Interface token = ERC20Interface(_token);
         require(token.transferFrom(msg.sender, address(this), _amount), "KeeperAuction::bid: transferFrom fail");
