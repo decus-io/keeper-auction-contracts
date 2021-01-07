@@ -11,9 +11,9 @@ async function main() {
     console.log("KeeperAuction bid count:", (await auction.bidCount()).toString());
     console.log("KeeperAuction biddable:", (await auction.biddable()));
     console.log("KeeperAuction withdrawable:", (await auction.withdrawable()));
-    console.log("KeeperAuction cancelable:", (await auction.cancelable(0)));
     console.log("KeeperAuction bidderAmount:", (await auction.bidderAmount('0x8984a423ce4bc23e97c1795ea11a56abecb1ee56')).toString());
     console.log("KeeperAuction userBidsIndex:", (await auction.userBidsIndex('0x8984a423ce4bc23e97c1795ea11a56abecb1ee56')).toString());
+    console.log("KeeperAuction cancelable:", (await auction.cancelable(0)));
 
     const bid0 = await auction.getBid(0);
     console.log(`Bid 0: {
