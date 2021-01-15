@@ -277,7 +277,7 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
             _amounts[i] = selectedTokens[i].amount;
             require(token.approve(address(keeperImport), selectedTokens[i].amount), "KeeperAuction::end: approve fail");
         }
-        require(keeperImport.importKeepers(address(this), _tokens, _amounts, keepers, _keeperAmounts),  "KeeperAuction::end: add keepers fail");
+        keeperImport.importKeepers(address(this), _tokens, _amounts, keepers, _keeperAmounts);
         ended = true;
         emit AuctionEnd(_tokens, _amounts, keepers);
     }

@@ -9,7 +9,7 @@ contract KeeperImportHarness is IKeeperImport {
     address[] public keepers;
 
     function importKeepers(address _from, address[] calldata _assets, uint256[] calldata _amounts,
-        address[] calldata _keepers, uint256[] calldata _keeper_amounts) external override returns (bool success) {
+        address[] calldata _keepers, uint256[] calldata _keeper_amounts) external override {
         require(_assets.length == _amounts.length, "KeeperHolderHarness:add: dismatch tokens and amount");
 
         // check keeper amounts
@@ -33,7 +33,6 @@ contract KeeperImportHarness is IKeeperImport {
             require(token.transferFrom(_from, address(this), _amounts[i]), "KeeperHolderHarness:add: transferFrom fail");
         }
         keepers = _keepers;
-        return true;
     }
 
     function keeperSize() public view returns (uint) {

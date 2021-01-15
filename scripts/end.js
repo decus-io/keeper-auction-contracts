@@ -7,16 +7,15 @@ async function main() {
     
     try {
         const result = await auction.end([
-            '0xdb3443cd328d1774caeb94643419306c7b4a4775',
-            '0xfc8a9d672dd5910c30d567db437dd6fa1fa86d9a',
+            '0x9c6a9e68bcac01afb53feffbf819c1b30c56bc62',
             '0x8984a423ce4bc23e97c1795ea11a56abecb1ee56',
+            '0x347ba66e4d8bb18601ba03e2b32ceb22c8a8cbd8',
             '0xf09b8dda559292111af945e91717da39eef34ade',
-            '0xce38eb60670e1c2b96b8f9413187d4e79ef7a79a',
-            '0xf4ddd38a2d2f4231e1ddf131a8f3fd80804e08fe'
+            '0x8def74f25f5429831044c64c057121e3322133f0',
         ]);
         console.log(`Auction ${process.env.AUCTION_ADDRESS} ended at tx: ${result.hash}`);
     } catch (e) {
-        console.log(e);
+        console.log(e.stack);
     }
 }
 
