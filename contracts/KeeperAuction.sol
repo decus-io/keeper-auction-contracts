@@ -3,12 +3,13 @@ pragma solidity >=0.6.0 <0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./interfaces/ERC20Interface.sol";
 import "./interfaces/IKeeperImport.sol";
 
-contract KeeperAuction is Initializable, OwnableUpgradeable {
+contract KeeperAuction is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable {
     using SafeMath for uint256;
     using SafeMath for uint;
 
@@ -65,6 +66,7 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
 
     function initialize(address[] memory _tokens, uint _delay, uint256 minAmount) public initializer {
         __Ownable_init();
+        __ReentrancyGuard_init();
 
         require(_delay > 0 && _delay < MAXIMUM_DELAY, "KeeperAuction::initialize: delay illegal");
         deadline = 9999999999;
@@ -80,7 +82,7 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
         }
     }
 
-    function bid(address _token, uint256 _amount) public {
+    function bid(address _token, uint256 _amount) public nonReentrant {
         require(biddable(), "KeeperAuction::bid: stop bid");
 
         Token storage vToken = tokens[_token];
@@ -110,7 +112,7 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
         emit Bidded(msg.sender, cIndex, _token, _amount);
     }
 
-    function cancel(uint _index) public {
+    function cancel(uint _index) public nonReentrant {
         require(withdrawable(), "KeeperAuction::cancel: can't cancel before end");
         require(bids.length > _index, "KeeperAuction::cancel: Unknown bid index");
         Bid storage _bid = bids[_index];
@@ -127,7 +129,7 @@ contract KeeperAuction is Initializable, OwnableUpgradeable {
         emit Canceled(msg.sender, _bid.index, _bid.token, cancelAmount);
     }
 
-    function refund() public {
+    function refund() public nonReentrant {
         require(withdrawable(), "KeeperAuction::cancel: can't cancel before end");
         uint[] storage _userBids = userBids[msg.sender].bids;
         for (uint i = 0; i < _userBids.length; i++) {

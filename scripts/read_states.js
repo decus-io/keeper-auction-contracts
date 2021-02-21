@@ -7,6 +7,7 @@ async function main() {
     const auction = KeeperAuction.attach(process.env.AUCTION_ADDRESS);
     
     console.log("KeeperAuction deadline:", (await auction.deadline()).toString());
+    console.log("KeeperAuction ended:", (await auction.ended()));
 
     console.log("KeeperAuction bid count:", (await auction.bidCount()).toString());
     console.log("KeeperAuction biddable:", (await auction.biddable()));
