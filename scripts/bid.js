@@ -2,18 +2,32 @@ const { ethers } = require("hardhat");
 
 async function main() {
     const KeeperAuction = await ethers.getContractFactory("KeeperAuction");
+    const AUCTION_ADDRESS = process.env.AUCTION_ADDRESS;
+    const WBTC_ADDRESS = process.env.WBTC_ADDRESS;
 
-    const auction = KeeperAuction.attach(process.env.AUCTION_ADDRESS);
-    
+    const amount = "1000000000";
+
+    const ERC20 = await ethers.getContractFactory("ERC20");
+    const wbtc = ERC20.attach(WBTC_ADDRESS);
     try {
-        const result = await auction.bid(
-            "0xffa6d011a20ff3a302da0c4ca5713e234e7309af",
-            "1000000000000000000"
-        );
-        console.log(`Auction ${process.env.AUCTION_ADDRESS} bid at tx: ${result.hash}`);
+        const result = await wbtc.approve(AUCTION_ADDRESS, amount);
+        console.log(`Approve at tx: ${result.hash}`);
     } catch (e) {
         console.log(e);
     }
+
+    // const auction = KeeperAuction.attach(AUCTION_ADDRESS);
+    // try {
+    //     const result = await auction.bid(WBTC_ADDRESS, amount);
+    //     console.log(`Auction ${process.env.AUCTION_ADDRESS} bid at tx: ${result.hash}`);
+    // } catch (e) {
+    //     console.log(e);
+    // }
 }
 
-main();
+main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });

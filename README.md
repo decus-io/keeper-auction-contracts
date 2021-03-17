@@ -1,5 +1,4 @@
-keeper auction contracts
-========================
+# keeper auction contracts
 
 ## Develop
 
@@ -20,7 +19,7 @@ export LOCK_DEADLINE=
 npx hardhat compile --force
 npx hardhat run scripts/deploy.js --network kovan
 
-// TODO 
+// TODO
 npx hardhat verify --network kovan 0xBf5413513343578E28A1241E78acB0458EBD1454
 
 npx hardhat run scripts/upgrade.js --network kovan

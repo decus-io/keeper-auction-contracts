@@ -1,7 +1,7 @@
 require("@nomiclabs/hardhat-truffle5");
-require('@openzeppelin/hardhat-upgrades');
+require("@openzeppelin/hardhat-upgrades");
 require("@nomiclabs/hardhat-etherscan");
-require('dotenv').config();
+require("dotenv").config();
 
 task("accounts", "Prints the list of accounts", async () => {
     const accounts = await web3.eth.getAccounts();
@@ -23,20 +23,19 @@ module.exports = {
         hardhat: {
             accounts: {
                 count: 200,
-            }
+            },
         },
         kovan: {
             url: `https://kovan.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
             accounts: [`0x${process.env.PRIVATE_KEY}`],
             throwOnTransactionFailures: true,
-            throwOnCallFailures: false
-        }
+            throwOnCallFailures: false,
+        },
     },
     etherscan: {
-        apiKey: `${process.env.ETHERSCAN_API_KEY}`
+        apiKey: `${process.env.ETHERSCAN_API_KEY}`,
     },
     mocha: {
-        timeout: 2000000
-    }
+        timeout: 2000000,
+    },
 };
-
